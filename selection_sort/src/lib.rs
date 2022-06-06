@@ -7,7 +7,6 @@ mod tests {
             for j in (i + 1)..nums.len(){
                 if nums[j] < nums[min_idx]{
                     min_idx = j;
-
                 }
             }
             nums.swap(min_idx, i);
