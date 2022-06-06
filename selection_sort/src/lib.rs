@@ -2,7 +2,6 @@
 mod tests {
     #[allow(unused_variables,dead_code)]
     fn selection_sort(nums: &mut [i32]) -> &mut [i32] {
-    
         for i in 0..nums.len(){
             let mut min_idx: usize = i;
             for j in (i + 1)..nums.len(){
