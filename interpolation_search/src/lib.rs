@@ -1,6 +1,6 @@
 use std::cmp;
 
-fn interpolation_search<Ordering>(nums: &[i32], key: &i32) -> Result<usize, usize> {
+fn interpolation_search<Ordering>(nums: &[i32], item: &i32) -> Result<usize, usize> {
     // early check
     if nums.is_empty() {
         return Err(0);
@@ -8,12 +8,12 @@ fn interpolation_search<Ordering>(nums: &[i32], key: &i32) -> Result<usize, usiz
     let mut low: usize = 0;
     let mut high: usize = nums.len() - 1;
     while low <= high {
-        if *key < nums[low] || *key > nums[high] {
+        if *item < nums[low] || *item > nums[high] {
             break;
         }
-        let offset: usize =
-        low + (((high - low) / (nums[high] - nums[low]) as usize) * (key - nums[low]) as usize);
-        match nums[offset].cmp(&*key) {
+        let offset: usize = low
+            + (((high - low) / (nums[high] - nums[low]) as usize) * (*item - nums[low]) as usize);
+        match nums[offset].cmp(&*item) {
             cmp::Ordering::Equal => return Ok(offset),
             cmp::Ordering::Less => low = offset + 1,
             cmp::Ordering::Greater => high = offset - 1,
@@ -33,15 +33,34 @@ fn interpolation_search<Ordering>(nums: &[i32], key: &i32) -> Result<usize, usiz
 mod tests {
     use crate::interpolation_search;
     use std::cmp::Ordering;
+    #[test]
+
+    fn returns_err_if_empty_slice() {
+        let nums = [];
+        assert_eq!(interpolation_search::<Ordering>(&nums, &3), Err(0));
+    }
 
     #[test]
-    fn it_works() {
+    fn returns_err_if_target_not_found() {
         let nums = [1, 2, 3, 4, 5, 6];
-        assert_eq!(interpolation_search::<Ordering>(&nums, &3), Ok(2));
+        assert_eq!(interpolation_search::<Ordering>(&nums, &10), Err(0));
     }
+
     #[test]
-    fn it_works2() {
-        let nums = [1, 2, 3, 4, 5, 6];
-        assert_eq!(interpolation_search::<Ordering>(&nums, &6), Ok(5));
+    fn returns_first_index() {
+        let index: Result<usize, usize> = interpolation_search::<Ordering>(&[1, 2, 3, 4, 5], &1);
+        assert_eq!(index, Ok(0));
+    }
+
+    #[test]
+    fn returns_last_index() {
+        let index: Result<usize, usize> = interpolation_search::<Ordering>(&[1, 2, 3, 4, 5], &5);
+        assert_eq!(index, Ok(4));
+    }
+
+    #[test]
+    fn returns_middle_index() {
+        let index: Result<usize, usize> = interpolation_search::<Ordering>(&[1, 2, 3, 4, 5], &3);
+        assert_eq!(index, Ok(2));
     }
 }
