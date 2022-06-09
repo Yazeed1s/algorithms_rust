@@ -1,3 +1,4 @@
+
 use std::cmp;
 
 fn interpolation_search<Ordering>(nums: &[i32], item: &i32) -> Result<usize, usize> {
