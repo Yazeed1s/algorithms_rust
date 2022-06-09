@@ -1,3 +1,4 @@
+
 #[allow(dead_code)]
 fn bubble_sort<T: std::cmp::Ord>(nums: &mut [T]) -> &mut [T] {
     let mut swapped: bool;
