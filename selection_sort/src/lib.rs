@@ -1,3 +1,4 @@
+
 #[allow(dead_code)]
 fn selection_sort<T: std::cmp::Ord>(nums: &mut [T]) -> &mut [T] {
     for i in 0..nums.len() {
