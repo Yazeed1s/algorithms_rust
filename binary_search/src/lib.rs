@@ -1,4 +1,5 @@
-pub fn binary_search<T>(nums: &[T], key: &T) -> Result<usize, usize>
+
+fn binary_search<T>(nums: &[T], key: &T) -> Result<usize, usize>
 where
     T: std::cmp::Ord,
 {
