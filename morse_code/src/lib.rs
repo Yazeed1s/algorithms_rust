@@ -1,3 +1,4 @@
+
 fn char_to_morse(&letter: &char) -> String {
     match letter {
         'a' => ".-".to_owned(),
