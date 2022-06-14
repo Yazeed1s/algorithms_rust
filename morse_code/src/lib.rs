@@ -1,4 +1,3 @@
-#[allow(dead_code, unused)]
 fn char_to_morse(&letter: &char) -> String {
     match letter {
         'a' => ".-".to_owned(),
@@ -41,7 +40,6 @@ fn char_to_morse(&letter: &char) -> String {
     }
 }
 
-#[allow(dead_code, unused)]
 fn morse_to_char(_strn: &str) -> String {
     if _strn == ".-" {
         "a".to_owned()
@@ -120,7 +118,6 @@ fn morse_to_char(_strn: &str) -> String {
     }
 }
 
-#[allow(dead_code, unused)]
 fn encrypt(text: &str) -> String {
     return text
         .chars()
@@ -129,7 +126,6 @@ fn encrypt(text: &str) -> String {
         .collect::<String>();
 }
 
-#[allow(dead_code, unused)]
 fn decrypt(text: &str) -> String {
     let mut decrypted_text: String = String::new();
     let vec: core::str::SplitWhitespace = text.split_whitespace();
@@ -150,4 +146,30 @@ mod tests {
         assert_eq!(decrypt(&en), text);
     }
 
+    #[test]
+    fn works_on_numbers() {
+        let text: &str = "123456789";
+        let encrypted_text: String = encrypt(text);
+        assert_eq!(
+            encrypted_text,
+            ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. "
+        );
+        assert_eq!(decrypt(&encrypted_text), text);
+    }
+
+    #[test]
+    fn works_on_similar_numbers() {
+        let text: &str = "1111";
+        let encrypted_text: String = encrypt(text);
+        assert_eq!(encrypted_text, ".---- .---- .---- .---- ");
+        assert_eq!(decrypt(&encrypted_text), text);
+    }
+
+    #[test]
+    fn works_on_similar_cahrs() {
+        let text: &str = "cccccccc";
+        let encrypted_text: String = encrypt(text);
+        assert_eq!(encrypted_text, "-.-. -.-. -.-. -.-. -.-. -.-. -.-. -.-. ");
+        assert_eq!(decrypt(&encrypted_text), text);
+    }
 }
