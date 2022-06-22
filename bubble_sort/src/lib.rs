@@ -29,6 +29,7 @@ mod tests {
     }
     #[test]
     fn test_bubble_sort_1000s() {
+        
         let mut rng = rand::thread_rng();
         let nums: &mut [i32; 10000] = &mut [rng.gen(); 10000];
         bubble_sort(nums);
