@@ -1,7 +1,7 @@
 
 fn shell_sort<T>(nums: &mut [T]) -> &mut [T]
 where
-    T: std::cmp::PartialOrd + Copy,
+    T: std::cmp::PartialOrd +  Copy,
 {
     let mut size: usize = nums.len() / 2;
     while size > 0 {
