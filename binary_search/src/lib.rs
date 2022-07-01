@@ -1,6 +1,5 @@
 
-fn binary_search<T>(nums: &[T], key: &T) -> Result<usize, usize>
-where
+fn binary_search<T>(nums: &[T], key: &T) -> Result<usize, usize> where
     T: std::cmp::Ord,
 {
     let mut low: i32 = 0;
